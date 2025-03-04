@@ -3,3 +3,4 @@ node_modules/
 
 # Thêm tệp .env vào .gitignore
 .env
+node_modules
