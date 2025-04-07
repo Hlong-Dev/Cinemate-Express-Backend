@@ -19,6 +19,10 @@ const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const roomRoutes = require('./routes/room.routes');
 const videoRoutes = require('./routes/video.routes');
+const menuRoutes = require('./routes/menus.routes');
+const movieRoutes = require('./routes/movie.routes');
+const subscriptionRoutes = require('./routes/subscription.routes');
+const paymentRoutes = require('./routes/payment.routes');
 
 // Cấu hình biến môi trường
 dotenv.config();
@@ -48,11 +52,15 @@ app.use('/thumbnails', express.static(path.join(__dirname, 'thumbnails')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Thiết lập routes
+// Đặt trước để xử lý tin nhắn chat
+app.use('/api/menus', menuRoutes); // Đặt trước để xử lý menus
 app.use('/api/auth', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/video', videoRoutes);
-
+app.use('/api/movies', movieRoutes);
+app.use('/api/subscriptions', subscriptionRoutes);
+app.use('/api/payments', paymentRoutes);
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to CineMate API' });
